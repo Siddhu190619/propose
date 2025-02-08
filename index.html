@@ -40,7 +40,8 @@
             font-size: 18px;
             margin-bottom: 20px;
             line-height: 1.6;
-            display: none; /* Hidden initially */
+            display: none;
+            color: black; /* Changed the font color for feelings to black */
         }
 
         button {
@@ -53,7 +54,7 @@
             cursor: pointer;
             transition: background-color 0.3s, transform 0.2s;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            display: none; /* Hidden initially */
+            display: none;
         }
 
         button:hover {
@@ -91,20 +92,21 @@
 
 <script>
     let currentLine = 1;
+    const totalLines = 4;
 
     function revealLine() {
-        if (currentLine <= 4) {
+        if (currentLine <= totalLines) {
             const line = document.getElementById(`line${currentLine}`);
-            line.style.display = 'block';
+            line.style.display = 'block'; // Show each line one by one
             currentLine++;
             setTimeout(revealLine, 2000); // Delay of 2 seconds between lines
         } else {
-            document.getElementById('next-button').style.display = 'inline-block'; // Show "Next" button
+            document.getElementById('next-button').style.display = 'inline-block'; // Show the "Next" button after all lines are revealed
         }
     }
 
     window.onload = function() {
-        setTimeout(revealLine, 1000); // Start revealing lines with a 1-second delay
+        setTimeout(revealLine, 1000);
     };
 
     function showProposal() {
