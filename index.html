@@ -20,14 +20,14 @@
         }
 
         .container {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             text-align: center;
             max-width: 600px;
             animation: fadeIn 2s ease-in;
-            color: #333;
+            display: none;
         }
 
         h1 {
@@ -40,11 +40,7 @@
         p {
             font-size: 18px;
             margin-bottom: 20px;
-            line-height: 1.8;
-            font-weight: 500;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInText 1s forwards;
+            line-height: 1.6;
         }
 
         button {
@@ -57,7 +53,6 @@
             cursor: pointer;
             transition: background-color 0.3s, transform 0.2s;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            display: none;
         }
 
         button:hover {
@@ -65,11 +60,9 @@
             transform: scale(1.1);
         }
 
-        @keyframes fadeInText {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -80,26 +73,27 @@
   Your browser does not support the audio element.
 </audio>
 
-<div class="container" id="message-container">
-    <h1>Before I Ask You Something...</h1>
-    <p id="line1" style="animation-delay: 1s;">Khushi, I've been holding onto these feelings for a while now.</p>
-    <p id="line2" style="animation-delay: 3s;">Every time I see you, my heart races, and I can't help but smile.</p>
-    <p id="line3" style="animation-delay: 5s;">You’ve made my world brighter with your presence, and I want to cherish every moment with you.</p>
-    <p id="line4" style="animation-delay: 7s;">I think it’s time to share what’s in my heart. I hope you’ll listen with yours and let me take the next step.</p>
-    <button id="next-button" onclick="showProposal()">Next</button>
+<div class="container" id="message1">
+    <p>Khushi, I've been holding onto these feelings for a while now.</p>
 </div>
-
-<div class="container" id="proposal-container" style="display: none;">
+<div class="container" id="message2">
+    <p>Every time I see you, my heart races, and I can't help but smile.</p>
+</div>
+<div class="container" id="message3">
+    <p>You’ve made my world brighter with your presence, and I want to cherish every moment with you.</p>
+</div>
+<div class="container" id="proposal-container">
     <h1>Will You Be Mine Forever?</h1>
     <button onclick="handleAnswer(true)">Yes</button>
     <button onclick="handleAnswer(false)">No</button>
 </div>
 
 <script>
-    function showProposal() {
-        document.getElementById('message-container').style.display = 'none';
-        document.getElementById('proposal-container').style.display = 'block';
-    }
+    // Show feelings one by one with delays
+    setTimeout(() => document.getElementById('message1').style.display = 'block', 1000);
+    setTimeout(() => document.getElementById('message2').style.display = 'block', 4000);
+    setTimeout(() => document.getElementById('message3').style.display = 'block', 7000);
+    setTimeout(() => document.getElementById('proposal-container').style.display = 'block', 10000);
 
     function handleAnswer(answer) {
         const proposalContainer = document.getElementById('proposal-container');
@@ -130,11 +124,6 @@
         const proposalContainer = document.getElementById('proposal-container');
         proposalContainer.innerHTML = "<h1>Woohoo! Here's my heart for you! ❤️💖</h1>";
     }
-
-    // Show the "Next" button after the last paragraph appears
-    setTimeout(() => {
-        document.getElementById('next-button').style.display = 'inline-block';
-    }, 8000);
 </script>
 
 </body>
