@@ -53,7 +53,7 @@
             cursor: pointer;
             transition: background-color 0.3s, transform 0.2s;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            display: none;
+            display: none; /* Initially hide the button */
             margin-top: 20px;
         }
 
@@ -81,8 +81,8 @@
 
 <div class="container" id="proposal-container" style="display: none;">
     <h1>Will You Be Mine Forever?</h1>
-    <button onclick="handleAnswer(true)">Yes</button>
-    <button onclick="handleAnswer(false)">No</button>
+    <button id="yes-button" onclick="handleAnswer(true)">Yes</button>
+    <button id="no-button" onclick="handleAnswer(false)">No</button>
 </div>
 
 <script>
@@ -96,7 +96,8 @@
             currentLine++;
             setTimeout(revealLine, 2000); // Show each line with a 2-second delay
         } else {
-            document.getElementById('next-button').style.display = 'inline-block'; // Show the Next button
+            const nextButton = document.getElementById('next-button');
+            nextButton.style.display = 'inline-block'; // Show the Next button after all lines are revealed
         }
     }
 
@@ -107,6 +108,12 @@
     function showProposal() {
         document.getElementById('message-container').style.display = 'none';
         document.getElementById('proposal-container').style.display = 'block';
+        
+        // Ensure the proposal buttons are shown
+        const yesButton = document.getElementById('yes-button');
+        const noButton = document.getElementById('no-button');
+        yesButton.style.display = 'inline-block';
+        noButton.style.display = 'inline-block';
     }
 
     function handleAnswer(answer) {
