@@ -121,12 +121,23 @@
         if (answer) {
             proposalContainer.innerHTML = "<h1>Yay! Here is my heart for you! ❤️💖</h1>";
         } else {
-            proposalContainer.innerHTML = `
-                <h1>Soch Lo?</h1>
-                <button onclick="secondChance(true)">Yes</button>
-                <button onclick="secondChance(false)">No</button>
-            `;
+            showSochLoButtons();  // Show Soch Lo buttons when the answer is no
         }
+    }
+
+    function showSochLoButtons() {
+        const proposalContainer = document.getElementById('proposal-container');
+        proposalContainer.innerHTML = `
+            <h1>Soch Lo?</h1>
+            <button onclick="secondChance(true)">Yes</button>
+            <button onclick="secondChance(false)">No</button>
+        `;
+        
+        // Display buttons
+        const yesButton = document.querySelector("button[onclick='secondChance(true)']");
+        const noButton = document.querySelector("button[onclick='secondChance(false)']");
+        yesButton.style.display = 'inline-block';
+        noButton.style.display = 'inline-block';
     }
 
     function secondChance(answer) {
@@ -138,6 +149,10 @@
                 <h1>Yrr Kiti Bhav Khates ga Ho Bolun Taak 😜</h1>
                 <button onclick="finalStep()">Yes</button>
             `;
+            
+            // Show the final button
+            const finalButton = document.querySelector("button[onclick='finalStep()']");
+            finalButton.style.display = 'inline-block';
         }
     }
 
