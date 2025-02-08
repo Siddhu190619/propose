@@ -94,15 +94,18 @@
 
     function revealLine() {
         if (currentLine <= 4) {
-            document.getElementById(`line${currentLine}`).style.display = 'block';
+            const line = document.getElementById(`line${currentLine}`);
+            line.style.display = 'block';
             currentLine++;
-            setTimeout(revealLine, 2000); // Delay between lines
+            setTimeout(revealLine, 2000); // Delay of 2 seconds between lines
         } else {
-            document.getElementById('next-button').style.display = 'inline-block'; // Show the "Next" button after all lines
+            document.getElementById('next-button').style.display = 'inline-block'; // Show "Next" button
         }
     }
 
-    window.onload = revealLine; // Start revealing lines when the page loads
+    window.onload = function() {
+        setTimeout(revealLine, 1000); // Start revealing lines with a 1-second delay
+    };
 
     function showProposal() {
         document.getElementById('message-container').style.display = 'none';
@@ -125,4 +128,20 @@
     function secondChance(answer) {
         const proposalContainer = document.getElementById('proposal-container');
         if (answer) {
-            proposalContainer.innerHTML = "<h1>I'm so glad you said yes! Here's my heart! ❤️
+            proposalContainer.innerHTML = "<h1>I'm so glad you said yes! Here's my heart! ❤️💖</h1>";
+        } else {
+            proposalContainer.innerHTML = `
+                <h1>Yrr Kiti Bhav Khates ga Ho Bolun Taak 😜</h1>
+                <button onclick="finalStep()">Yes</button>
+            `;
+        }
+    }
+
+    function finalStep() {
+        const proposalContainer = document.getElementById('proposal-container');
+        proposalContainer.innerHTML = "<h1>Woohoo! Here's my heart for you! ❤️💖</h1>";
+    }
+</script>
+
+</body>
+</html>
