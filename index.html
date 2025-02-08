@@ -73,6 +73,9 @@
   Your browser does not support the audio element.
 </audio>
 
+<div class="container" id="title">
+    <h1>My Feelings</h1>
+</div>
 <div class="container" id="message1">
     <p>Khushi, I've been holding onto these feelings for a while now.</p>
 </div>
@@ -89,11 +92,12 @@
 </div>
 
 <script>
-    // Show feelings one by one with delays
-    setTimeout(() => document.getElementById('message1').style.display = 'block', 1000);
-    setTimeout(() => document.getElementById('message2').style.display = 'block', 4000);
-    setTimeout(() => document.getElementById('message3').style.display = 'block', 7000);
-    setTimeout(() => document.getElementById('proposal-container').style.display = 'block', 10000);
+    // Show the title first, then each message one by one with delays
+    setTimeout(() => document.getElementById('title').style.display = 'block', 1000);
+    setTimeout(() => document.getElementById('message1').style.display = 'block', 4000);
+    setTimeout(() => document.getElementById('message2').style.display = 'block', 7000);
+    setTimeout(() => document.getElementById('message3').style.display = 'block', 10000);
+    setTimeout(() => document.getElementById('proposal-container').style.display = 'block', 13000);
 
     function handleAnswer(answer) {
         const proposalContainer = document.getElementById('proposal-container');
