@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Marry Me?</title>
+    <title>Will You Be Mine Forever?</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -28,7 +28,7 @@
         button {
             font-size: 18px;
             padding: 10px 20px;
-            margin-top: 20px;
+            margin: 10px;
             background-color: #3498db;
             color: #fff;
             border: none;
@@ -39,23 +39,56 @@
         button:hover {
             background-color: #2980b9;
         }
+        .rose-bouquet {
+            display: none;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
 
-<div class="proposal-container">
-    <h1>Will You Be Mine Forever?</h1>
-    <p>This is a special moment for me, and I wanted to ask you something very important.</p>
-    <button onclick="showAnswer(true)">Yes</button>
-    <button onclick="showAnswer(false)">No</button>
+<div class="proposal-container" id="proposal">
+    <h1 id="question">Will You Be Mine Forever?</h1>
+    <button onclick="handleAnswer(true)">Yes</button>
+    <button onclick="handleAnswer(false)">No</button>
 </div>
 
+<img src="https://cdn.pixabay.com/photo/2017/08/07/11/39/bouquet-2607148_1280.jpg" alt="Rose Bouquet" class="rose-bouquet" id="bouquet" width="300">
+
 <script>
-    function showAnswer(answer) {
-        let message = answer ? "Yay! I'm so happy you said yes! 💍" : "I understand. No worries at all. 😊";
-        alert(message);
+    function handleAnswer(answer) {
+        const proposalContainer = document.getElementById('proposal');
+        const bouquet = document.getElementById('bouquet');
+        
+        if (answer) {
+            // If she says "Yes"
+            proposalContainer.innerHTML = "<h1>Yay! Here's a bouquet of roses for you! 🌹💖</h1>";
+            bouquet.style.display = "block";
+        } else {
+            // If she says "No"
+            proposalContainer.innerHTML = `
+                <h1>Soch Lo...</h1>
+                <button onclick="secondChance(true)">Yes</button>
+                <button onclick="secondChance(false)">No</button>
+            `;
+        }
+    }
+
+    function secondChance(answer) {
+        const proposalContainer = document.getElementById('proposal');
+        const bouquet = document.getElementById('bouquet');
+        
+        if (answer) {
+            // If she changes her mind
+            proposalContainer.innerHTML = "<h1>I'm so glad you changed your mind! 🌹💖</h1>";
+            bouquet.style.display = "block";
+        } else {
+            // If she still says "No"
+            proposalContainer.innerHTML = "<h1>It's okay. I'll always cherish this moment. 😊</h1>";
+        }
     }
 </script>
 
 </body>
 </html>
+
