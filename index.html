@@ -16,7 +16,6 @@
             align-items: center;
             margin: 0;
             overflow: hidden;
-            color: white;
         }
 
         .container {
@@ -41,7 +40,7 @@
             margin-bottom: 20px;
             line-height: 1.6;
             display: none;
-            color: black; /* Changed the font color for feelings to black */
+            color: black;
         }
 
         button {
@@ -54,7 +53,7 @@
             cursor: pointer;
             transition: background-color 0.3s, transform 0.2s;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            display: none;
+            margin: 10px;
         }
 
         button:hover {
@@ -62,87 +61,32 @@
             transform: scale(1.1);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
 
-<audio id="romantic-music" autoplay loop>
-  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
-  Your browser does not support the audio element.
-</audio>
-
-<div class="container" id="message-container">
-    <h1>Before I Ask You Something...</h1>
-    <p id="line1">Khushi, I've been holding onto these feelings for a while now.</p>
-    <p id="line2">Every time I see you, my heart races, and I can't help but smile.</p>
-    <p id="line3">You’ve made my world brighter with your presence, and I want to cherish every moment with you.</p>
-    <p id="line4">I think it’s time to share what’s in my heart, and I hope you’ll listen with yours.</p>
-    <button id="next-button" onclick="showProposal()">Next</button>
-</div>
-
-<div class="container" id="proposal-container" style="display: none;">
+<div class="container" id="proposal-container">
     <h1>Will You Be Mine Forever?</h1>
-    <button onclick="handleAnswer(true)">Yes</button>
-    <button onclick="handleAnswer(false)">No</button>
+    <button id="yes-button">Yes</button>
+    <button id="no-button">No</button>
 </div>
 
 <script>
-    let currentLine = 1;
-    const totalLines = 4;
-
-    function revealLine() {
-        if (currentLine <= totalLines) {
-            const line = document.getElementById(`line${currentLine}`);
-            line.style.display = 'block'; // Show each line one by one
-            currentLine++;
-            setTimeout(revealLine, 2000); // Delay of 2 seconds between lines
-        } else {
-            document.getElementById('next-button').style.display = 'inline-block'; // Show the "Next" button after all lines are revealed
-        }
-    }
-
     window.onload = function() {
-        setTimeout(revealLine, 1000);
+        document.getElementById('yes-button').classList.remove('hidden');
+        document.getElementById('no-button').classList.remove('hidden');
     };
 
-    function showProposal() {
-        document.getElementById('message-container').style.display = 'none';
-        document.getElementById('proposal-container').style.display = 'block';
-    }
+    document.getElementById('yes-button').addEventListener('click', function() {
+        alert("Yay! You said yes! ❤️");
+    });
 
-    function handleAnswer(answer) {
-        const proposalContainer = document.getElementById('proposal-container');
-        if (answer) {
-            proposalContainer.innerHTML = "<h1>Yay! Here is my heart for you! ❤️💖</h1>";
-        } else {
-            proposalContainer.innerHTML = `
-                <h1>Soch Lo?</h1>
-                <button onclick="secondChance(true)">Yes</button>
-                <button onclick="secondChance(false)">No</button>
-            `;
-        }
-    }
-
-    function secondChance(answer) {
-        const proposalContainer = document.getElementById('proposal-container');
-        if (answer) {
-            proposalContainer.innerHTML = "<h1>I'm so glad you said yes! Here's my heart! ❤️💖</h1>";
-        } else {
-            proposalContainer.innerHTML = `
-                <h1>Yrr Kiti Bhav Khates ga Ho Bolun Taak 😜</h1>
-                <button onclick="finalStep()">Yes</button>
-            `;
-        }
-    }
-
-    function finalStep() {
-        const proposalContainer = document.getElementById('proposal-container');
-        proposalContainer.innerHTML = "<h1>Woohoo! Here's my heart for you! ❤️💖</h1>";
-    }
+    document.getElementById('no-button').addEventListener('click', function() {
+        alert("Aww... Maybe next time! 😢");
+    });
 </script>
 
 </body>
