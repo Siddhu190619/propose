@@ -33,6 +33,8 @@
             font-size: 36px;
             color: #e74c3c;
             margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease-in forwards;
         }
 
         p {
@@ -41,6 +43,8 @@
             line-height: 1.6;
             display: none;
             color: black;
+            opacity: 0;
+            animation: fadeIn 2s ease-in forwards;
         }
 
         button {
@@ -93,11 +97,13 @@
         if (currentLine <= totalLines) {
             const line = document.getElementById(`line${currentLine}`);
             line.style.display = 'block';
+            line.classList.add('fade-in'); // Apply animation to each line
             currentLine++;
             setTimeout(revealLine, 2000); // Show each line with a 2-second delay
         } else {
             const nextButton = document.getElementById('next-button');
             nextButton.style.display = 'inline-block'; // Show the Next button after all lines are revealed
+            nextButton.classList.add('fade-in'); // Apply animation to the Next button
         }
     }
 
@@ -109,17 +115,22 @@
         document.getElementById('message-container').style.display = 'none';
         document.getElementById('proposal-container').style.display = 'block';
         
-        // Ensure the proposal buttons are shown
+        // Ensure the proposal buttons are shown with animations
         const yesButton = document.getElementById('yes-button');
         const noButton = document.getElementById('no-button');
         yesButton.style.display = 'inline-block';
         noButton.style.display = 'inline-block';
+        
+        yesButton.classList.add('fade-in');
+        noButton.classList.add('fade-in');
     }
 
     function handleAnswer(answer) {
         const proposalContainer = document.getElementById('proposal-container');
         if (answer) {
             proposalContainer.innerHTML = "<h1>Yay! Here is my heart for you! ❤️💖</h1>";
+            const h1 = proposalContainer.querySelector('h1');
+            h1.classList.add('fade-in');
         } else {
             showSochLoButtons();  // Show Soch Lo buttons when the answer is no
         }
@@ -133,32 +144,44 @@
             <button onclick="secondChance(false)">No</button>
         `;
         
-        // Display buttons
-        const yesButton = document.querySelector("button[onclick='secondChance(true)']");
-        const noButton = document.querySelector("button[onclick='secondChance(false)']");
+        // Display buttons and apply fade-in animation
+        const h1 = proposalContainer.querySelector('h1');
+        h1.classList.add('fade-in');
+        
+        const yesButton = proposalContainer.querySelector("button[onclick='secondChance(true)']");
+        const noButton = proposalContainer.querySelector("button[onclick='secondChance(false)']");
+        
         yesButton.style.display = 'inline-block';
         noButton.style.display = 'inline-block';
+        
+        yesButton.classList.add('fade-in');
+        noButton.classList.add('fade-in');
     }
 
     function secondChance(answer) {
         const proposalContainer = document.getElementById('proposal-container');
         if (answer) {
             proposalContainer.innerHTML = "<h1>I'm so glad you said yes! Here's my heart! ❤️💖</h1>";
+            const h1 = proposalContainer.querySelector('h1');
+            h1.classList.add('fade-in');
         } else {
             proposalContainer.innerHTML = `
                 <h1>Yrr Kiti Bhav Khates ga Ho Bolun Taak 😜</h1>
                 <button onclick="finalStep()">Yes</button>
             `;
             
-            // Show the final button
-            const finalButton = document.querySelector("button[onclick='finalStep()']");
+            // Show the final button and apply animation
+            const finalButton = proposalContainer.querySelector("button[onclick='finalStep()']");
             finalButton.style.display = 'inline-block';
+            finalButton.classList.add('fade-in');
         }
     }
 
     function finalStep() {
         const proposalContainer = document.getElementById('proposal-container');
         proposalContainer.innerHTML = "<h1>Woohoo! Here's my heart for you! ❤️💖</h1>";
+        const h1 = proposalContainer.querySelector('h1');
+        h1.classList.add('fade-in');
     }
 </script>
 
